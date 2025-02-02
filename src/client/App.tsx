@@ -1,8 +1,7 @@
 import { type ReactElement } from 'react';
 
+import { FileUpload } from '@/components/file-upload';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-
-import { FileInput } from './components/file-input';
 
 export const App = (): ReactElement => (
     <main className="relative isolate h-dvh">
@@ -27,7 +26,7 @@ export const App = (): ReactElement => (
                     </CardHeader>
                     <CardContent>
                         <CardDescription>
-                            <FileInput id="upload-file-input" />
+                            <FileUpload />
                         </CardDescription>
                     </CardContent>
                 </Card>
