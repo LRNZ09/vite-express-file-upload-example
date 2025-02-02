@@ -12,6 +12,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
+        "@radix-ui/react-progress": "1.1.1",
         "@radix-ui/react-slot": "1.1.1",
         "body-parser": "^1.20.2",
         "class-variance-authority": "0.7.1",
