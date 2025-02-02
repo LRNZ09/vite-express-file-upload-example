@@ -2,6 +2,8 @@ import { type ReactElement } from 'react';
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
+import { FileInput } from './components/file-input';
+
 export const App = (): ReactElement => (
     <main className="relative isolate h-dvh">
         <img
@@ -24,7 +26,9 @@ export const App = (): ReactElement => (
                         <CardTitle>Getting Started</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <CardDescription>TODO</CardDescription>
+                        <CardDescription>
+                            <FileInput id="upload-file-input" />
+                        </CardDescription>
                     </CardContent>
                 </Card>
             </div>
