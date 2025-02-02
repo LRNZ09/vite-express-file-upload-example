@@ -8,7 +8,7 @@ export const App = (): ReactElement => (
             src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoid2VhcmVcL2FjY291bnRzXC82ZVwvNDAwMDM4OFwvcHJvamVjdHNcLzk4NFwvYXNzZXRzXC9iOFwvMTE1MjY1XC8xMjYwMTU0YzFhYmVmMDVjNjZlY2Q2MDdmMTRhZTkxNS0xNjM4MjU4MjQwLmpwZyJ9:weare:_kpZgwnGPTxOhYxIyfS1MhuZmxGrFCzP6ZW6dc-F6BQ?width=2400"
             alt="background image"
             aria-hidden="true"
-            className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
+            className="absolute inset-0 -z-10 h-full w-full object-cover object-top blur-3xl"
         />
 
         <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
