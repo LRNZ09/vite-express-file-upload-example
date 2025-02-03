@@ -6,5 +6,11 @@
         "moduleResolution": "bundler",
         "allowSyntheticDefaultImports": true
     },
-    "include": ["src/server", "postcss.config.cjs", "tailwind.config.ts", "vite.config.ts"]
+    "include": [
+        "src/server",
+        "postcss.config.cjs",
+        "tailwind.config.ts",
+        "vite.config.ts",
+        "vitest-testing-library-setup.ts"
+    ]
 }
