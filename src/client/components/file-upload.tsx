@@ -1,7 +1,9 @@
+import { Blocks } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
 import { FileInput, type FileInputProps } from './file-input';
 import { FileUploadButton } from './file-upload-button';
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 
 type FileUploadProps = Pick<FileInputProps, 'accept'>;
 
@@ -19,7 +21,15 @@ export const FileUpload = ({ accept }: FileUploadProps) => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-2">
+            <Alert>
+                <Blocks className="h-4 w-4" />
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                    If your file is too large, it may be chunked and uploaded in smaller parts.
+                </AlertDescription>
+            </Alert>
+
             <FileInput id="upload-file-input" accept={accept} onChange={handleFileSelect} />
 
             {file && <FileUploadButton file={file} />}
