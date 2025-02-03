@@ -14,6 +14,7 @@ export default defineConfig({
         ],
         setupFiles: [
             './vitest-fast-check-setup.ts', // https://fast-check.dev/docs/configuration/global-settings/#vitest
+            './vitest-jest-dom-setup.ts', // https://github.com/testing-library/jest-dom?tab=readme-ov-file#with-vitest
             './vitest-testing-library-setup.ts', // https://testing-library.com/docs/react-testing-library/setup#auto-cleanup-in-vitest
         ],
     },
