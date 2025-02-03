@@ -2,7 +2,7 @@ import useSWR, { type Fetcher } from 'swr';
 
 import { fetcher } from '@/helpers/fetcher';
 
-interface FileListResponse {
+export interface FileListResponse {
     readonly files: readonly { readonly name: string; readonly size: number }[];
 }
 
