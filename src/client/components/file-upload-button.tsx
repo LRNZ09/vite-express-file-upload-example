@@ -5,6 +5,9 @@ import { uploadChunkFile } from '@/api/upload-chunk-file';
 import { uploadSingleFile } from '@/api/upload-single-file';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { useToast } from '@/hooks/use-toast';
+
+import { ToastAction } from './ui/toast';
 
 export interface FileUploadButtonProps {
     file: File;
@@ -20,6 +23,8 @@ export const FileUploadButton = ({
     chunkSize = DEFAULT_CHUNK_SIZE,
     chunkThreshold = DEFAULT_CHUNK_THRESHOLD,
 }: FileUploadButtonProps) => {
+    const { toast } = useToast();
+
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
 
@@ -52,10 +57,25 @@ export const FileUploadButton = ({
             } else {
                 await uploadSingleFile(file);
             }
+
+            toast({
+                description: 'File uploaded successfully.',
+            });
+        } catch {
+            toast({
+                variant: 'destructive',
+                title: 'Uh oh! Something went wrong.',
+                description: 'There was a problem with your file upload.',
+                action: (
+                    <ToastAction altText="Try again" onClick={handleUpload}>
+                        Try again
+                    </ToastAction>
+                ),
+            });
         } finally {
             setUploading(false);
         }
-    }, [chunkThreshold, file, splitAndUploadFileChunks]);
+    }, [chunkThreshold, file, splitAndUploadFileChunks, toast]);
 
     return (
         <div className="flex flex-col items-center gap-4 w-full">
