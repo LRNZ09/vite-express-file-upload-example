@@ -7,7 +7,7 @@
         "build": "vite build",
         "dev": "nodemon -w src/server -x tsx src/server/main.ts",
         "start": "NODE_ENV=production tsx src/server/main.ts",
-        "test:client": "echo 'No client tests yet'",
+        "test:client": "vitest run src/client",
         "test:server": "vitest run src/server/test/e2e.spec.ts",
         "typecheck": "tsc --noEmit"
     },
