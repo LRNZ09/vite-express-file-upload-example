@@ -31,6 +31,7 @@
         "vite-express": "^0.16.0"
     },
     "devDependencies": {
+        "@fast-check/vitest": "0.1.5",
         "@frontify/eslint-config-react": "^0.17.6",
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.2.0",

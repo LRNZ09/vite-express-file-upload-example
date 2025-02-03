@@ -9,6 +9,7 @@ export default defineConfig({
             NODE_ENV: 'test',
         },
         setupFiles: [
+            './vitest-fast-check-setup.ts', // https://fast-check.dev/docs/configuration/global-settings/#vitest
             './vitest-testing-library-setup.ts', // https://testing-library.com/docs/react-testing-library/setup#auto-cleanup-in-vitest
         ],
     },
