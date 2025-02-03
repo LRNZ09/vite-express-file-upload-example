@@ -6,6 +6,7 @@ import { uploadChunkFile } from '@/api/upload-chunk-file';
 import { uploadSingleFile } from '@/api/upload-single-file';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { useFileList } from '@/hooks/use-file-list';
 import { useToast } from '@/hooks/use-toast';
 
 import { ToastAction } from './ui/toast';
@@ -27,6 +28,8 @@ export const FileUploadButton = ({
     const [isUploading, { setTrue: setIsUploading, setFalse: setIsNotUploading }] = useBoolean(false);
     const [progress, { set: setProgress, reset: resetProgress }] = useCounter(0, { min: 0, max: 100 });
     const { toast } = useToast();
+
+    const { mutate } = useFileList();
 
     const splitAndUploadFileChunks = useCallback(async (): Promise<void> => {
         // * We ensure that if the file size is not perfectly divisible by the chunk size, an additional chunk is created to accommodate the remainder
@@ -58,6 +61,9 @@ export const FileUploadButton = ({
                 await uploadSingleFile(file);
             }
 
+            // * Refresh the file list after successful upload
+            await mutate();
+
             toast({
                 description: 'File uploaded successfully.',
             });
@@ -75,7 +81,16 @@ export const FileUploadButton = ({
         } finally {
             setIsNotUploading();
         }
-    }, [chunkThreshold, file, resetProgress, setIsNotUploading, setIsUploading, splitAndUploadFileChunks, toast]);
+    }, [
+        chunkThreshold,
+        file,
+        mutate,
+        resetProgress,
+        setIsNotUploading,
+        setIsUploading,
+        splitAndUploadFileChunks,
+        toast,
+    ]);
 
     const debouncedIsUploading = useDebounce(isUploading, { wait: 500 });
 
