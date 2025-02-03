@@ -12,6 +12,7 @@
         "tailwind.config.ts",
         "vite.config.ts",
         "vitest-fast-check-setup.ts",
+        "vitest-jest-dom-setup.ts",
         "vitest-testing-library-setup.ts"
     ]
 }
