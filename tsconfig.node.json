@@ -7,10 +7,11 @@
         "allowSyntheticDefaultImports": true
     },
     "include": [
-        "src/server",
         "postcss.config.cjs",
+        "src/server",
         "tailwind.config.ts",
         "vite.config.ts",
+        "vitest-fast-check-setup.ts",
         "vitest-testing-library-setup.ts"
     ]
 }
