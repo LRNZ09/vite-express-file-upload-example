@@ -1,3 +1,4 @@
+import { useCounter } from 'ahooks';
 import { Loader2, Upload } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
@@ -23,10 +24,10 @@ export const FileUploadButton = ({
     chunkSize = DEFAULT_CHUNK_SIZE,
     chunkThreshold = DEFAULT_CHUNK_THRESHOLD,
 }: FileUploadButtonProps) => {
+    const [progress, { set: setProgress, reset: resetProgress }] = useCounter(0, { min: 0, max: 100 });
     const { toast } = useToast();
 
     const [uploading, setUploading] = useState(false);
-    const [progress, setProgress] = useState(0);
 
     const splitAndUploadFileChunks = useCallback(async (): Promise<void> => {
         // * We ensure that if the file size is not perfectly divisible by the chunk size, an additional chunk is created to accommodate the remainder
@@ -45,11 +46,11 @@ export const FileUploadButton = ({
             const partialProgress = ((index + 1) / totalChunks) * 100;
             setProgress(partialProgress);
         }
-    }, [chunkSize, file]);
+    }, [chunkSize, file, setProgress]);
 
     const handleUpload = useCallback(async () => {
         setUploading(true);
-        setProgress(0);
+        resetProgress();
 
         try {
             if (file.size > chunkThreshold) {
@@ -75,7 +76,7 @@ export const FileUploadButton = ({
         } finally {
             setUploading(false);
         }
-    }, [chunkThreshold, file, splitAndUploadFileChunks, toast]);
+    }, [chunkThreshold, file, resetProgress, splitAndUploadFileChunks, toast]);
 
     return (
         <div className="flex flex-col items-center gap-4 w-full">
