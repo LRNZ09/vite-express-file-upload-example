@@ -1,4 +1,4 @@
-import { useBoolean, useCounter } from 'ahooks';
+import { useBoolean, useCounter, useDebounce } from 'ahooks';
 import { Loader2, Upload } from 'lucide-react';
 import { useCallback } from 'react';
 
@@ -77,14 +77,17 @@ export const FileUploadButton = ({
         }
     }, [chunkThreshold, file, resetProgress, setIsNotUploading, setIsUploading, splitAndUploadFileChunks, toast]);
 
+    const debouncedIsUploading = useDebounce(isUploading, { wait: 500 });
+
     return (
         <div className="flex flex-col items-center gap-4 w-full">
+            {/* Avoid using the debounced value for the button to prevent unintentional double-clicks. */}
             <Button onClick={handleUpload} disabled={isUploading}>
-                {isUploading ? <Loader2 className="animate-spin" /> : <Upload />}
+                {debouncedIsUploading ? <Loader2 className="animate-spin" /> : <Upload />}
                 Upload File
             </Button>
 
-            {isUploading && (
+            {debouncedIsUploading && (
                 <div className="gap-2 w-full">
                     <Progress value={progress} className="w-full" />
                     <p className="text-xs text-gray-500 mt-1">{Math.round(progress)}%</p>
