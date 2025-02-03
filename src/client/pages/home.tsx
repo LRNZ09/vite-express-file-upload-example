@@ -1,5 +1,7 @@
 import { FileUpload } from '@/components/file-upload';
+import { FileList } from '@/components/files-list';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 export const Home = () => (
     <>
@@ -25,6 +27,8 @@ export const Home = () => (
                     <CardContent>
                         <CardDescription>
                             <FileUpload />
+                            <Separator className="my-8" />
+                            <FileList />
                         </CardDescription>
                     </CardContent>
                 </Card>
