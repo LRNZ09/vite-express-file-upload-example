@@ -1,6 +1,6 @@
-import { useCounter } from 'ahooks';
+import { useBoolean, useCounter } from 'ahooks';
 import { Loader2, Upload } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { uploadChunkFile } from '@/api/upload-chunk-file';
 import { uploadSingleFile } from '@/api/upload-single-file';
@@ -24,10 +24,9 @@ export const FileUploadButton = ({
     chunkSize = DEFAULT_CHUNK_SIZE,
     chunkThreshold = DEFAULT_CHUNK_THRESHOLD,
 }: FileUploadButtonProps) => {
+    const [isUploading, { setTrue: setIsUploading, setFalse: setIsNotUploading }] = useBoolean(false);
     const [progress, { set: setProgress, reset: resetProgress }] = useCounter(0, { min: 0, max: 100 });
     const { toast } = useToast();
-
-    const [uploading, setUploading] = useState(false);
 
     const splitAndUploadFileChunks = useCallback(async (): Promise<void> => {
         // * We ensure that if the file size is not perfectly divisible by the chunk size, an additional chunk is created to accommodate the remainder
@@ -49,7 +48,7 @@ export const FileUploadButton = ({
     }, [chunkSize, file, setProgress]);
 
     const handleUpload = useCallback(async () => {
-        setUploading(true);
+        setIsUploading();
         resetProgress();
 
         try {
@@ -74,18 +73,18 @@ export const FileUploadButton = ({
                 ),
             });
         } finally {
-            setUploading(false);
+            setIsNotUploading();
         }
-    }, [chunkThreshold, file, resetProgress, splitAndUploadFileChunks, toast]);
+    }, [chunkThreshold, file, resetProgress, setIsNotUploading, setIsUploading, splitAndUploadFileChunks, toast]);
 
     return (
         <div className="flex flex-col items-center gap-4 w-full">
-            <Button onClick={handleUpload} disabled={uploading}>
-                {uploading ? <Loader2 className="animate-spin" /> : <Upload />}
+            <Button onClick={handleUpload} disabled={isUploading}>
+                {isUploading ? <Loader2 className="animate-spin" /> : <Upload />}
                 Upload File
             </Button>
 
-            {uploading && (
+            {isUploading && (
                 <div className="gap-2 w-full">
                     <Progress value={progress} className="w-full" />
                     <p className="text-xs text-gray-500 mt-1">{Math.round(progress)}%</p>
