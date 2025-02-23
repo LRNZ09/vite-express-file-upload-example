@@ -1,18 +1,18 @@
 {
-    "compilerOptions": {
-        "composite": true,
-        "skipLibCheck": true,
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "allowSyntheticDefaultImports": true
-    },
-    "include": [
-        "postcss.config.cjs",
-        "src/server",
-        "tailwind.config.ts",
-        "vite.config.ts",
-        "vitest-fast-check-setup.ts",
-        "vitest-jest-dom-setup.ts",
-        "vitest-testing-library-setup.ts"
-    ]
+	"compilerOptions": {
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": [
+		"postcss.config.cjs",
+		"src/server",
+		"tailwind.config.ts",
+		"vite.config.ts",
+		"vitest-fast-check-setup.ts",
+		"vitest-jest-dom-setup.ts",
+		"vitest-testing-library-setup.ts"
+	]
 }
