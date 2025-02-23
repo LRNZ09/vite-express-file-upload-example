@@ -1,13 +1,4 @@
-import { FileUpload } from '@/components/file-upload';
-import { FileList } from '@/components/files-list';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { FileUploadCard } from '@/components/file-upload-card';
 
 export const Home = () => (
 	<>
@@ -29,18 +20,7 @@ export const Home = () => (
 			</p>
 
 			<div className="mt-8 flex flex-col items-center justify-center gap-8 sm:gap-12 lg:flex-row lg:gap-16">
-				<Card className="w-full max-w-3xl bg-background">
-					<CardHeader>
-						<CardTitle>Getting Started</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<CardDescription>
-							<FileUpload />
-							<Separator className="my-8" />
-							<FileList />
-						</CardDescription>
-					</CardContent>
-				</Card>
+				<FileUploadCard />
 			</div>
 		</div>
 	</>
