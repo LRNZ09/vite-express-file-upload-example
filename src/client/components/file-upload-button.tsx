@@ -14,6 +14,7 @@ export interface FileUploadButtonProps {
 	file: File;
 	chunkSize?: number;
 	chunkThreshold?: number;
+	onUploadComplete?: () => void;
 }
 
 const DEFAULT_CHUNK_SIZE = 1024 * 1024; // 1MB
@@ -23,6 +24,7 @@ export const FileUploadButton = ({
 	file,
 	chunkSize = DEFAULT_CHUNK_SIZE,
 	chunkThreshold = DEFAULT_CHUNK_THRESHOLD,
+	onUploadComplete,
 }: FileUploadButtonProps) => {
 	const [
 		isUploading,
@@ -67,6 +69,8 @@ export const FileUploadButton = ({
 			toast({
 				description: 'File uploaded successfully.',
 			});
+
+			onUploadComplete?.();
 		} catch {
 			toast({
 				variant: 'destructive',
@@ -84,6 +88,7 @@ export const FileUploadButton = ({
 	}, [
 		chunkThreshold,
 		file,
+		onUploadComplete,
 		resetProgress,
 		setIsNotUploading,
 		setIsUploading,

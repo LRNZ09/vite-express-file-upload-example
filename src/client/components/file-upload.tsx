@@ -2,12 +2,16 @@ import { Blocks } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
 import { FileInput, type FileInputProps } from './file-input';
-import { FileUploadButton } from './file-upload-button';
+import {
+	FileUploadButton,
+	type FileUploadButtonProps,
+} from './file-upload-button';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 
-type FileUploadProps = Pick<FileInputProps, 'accept'>;
+type FileUploadProps = Pick<FileInputProps, 'accept'> &
+	Pick<FileUploadButtonProps, 'onUploadComplete'>;
 
-export const FileUpload = ({ accept }: FileUploadProps) => {
+export const FileUpload = ({ accept, onUploadComplete }: FileUploadProps) => {
 	const [file, setFile] = useState<File | null>(null);
 
 	const handleFileSelect = useCallback(
@@ -40,7 +44,9 @@ export const FileUpload = ({ accept }: FileUploadProps) => {
 				onChange={handleFileSelect}
 			/>
 
-			{file && <FileUploadButton file={file} />}
+			{file && (
+				<FileUploadButton file={file} onUploadComplete={onUploadComplete} />
+			)}
 		</div>
 	);
 };

@@ -8,8 +8,11 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { useFileList } from '@/hooks/use-file-list';
 
 export const FileUploadCard = () => {
+	const { mutate } = useFileList();
+
 	return (
 		<Card className="w-full max-w-3xl bg-background">
 			<CardHeader>
@@ -17,7 +20,7 @@ export const FileUploadCard = () => {
 			</CardHeader>
 			<CardContent>
 				<CardDescription>
-					<FileUpload />
+					<FileUpload onUploadComplete={mutate} />
 					<Separator className="my-8" />
 					<FileList />
 				</CardDescription>
