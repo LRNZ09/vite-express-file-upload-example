@@ -1,13 +1,9 @@
+import { BackgroundImage } from '@/components/background-image';
 import { FileUploadCard } from '@/components/file-upload-card';
 
 export const Home = () => (
 	<>
-		<img
-			src="https://picsum.photos/1280/720?grayscale&blur=4"
-			alt="background image"
-			aria-hidden="true"
-			className="absolute inset-0 -z-10 h-full w-full object-cover object-top blur-3xl"
-		/>
+		<BackgroundImage />
 
 		<div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
 			<h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-800 sm:text-5xl">
